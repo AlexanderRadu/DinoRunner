@@ -85,7 +85,17 @@ class Game:
 
         if check_collision(self.dino, *obstacles_to_check):
             DEATH_SOUND.play()
-            pygame.time.delay(500)
+            self.screen.fill(BG_COLOR)
+            for cloud in self.clouds:
+                cloud.draw(self.screen)
+            self.base.draw(self.screen)
+            self.small_cactus.draw(self.screen)
+            self.large_cactus.draw(self.screen)
+            if self.score > 350:
+                self.bird.draw(self.screen)
+            self.dino.draw_dead(self.screen)
+            self.display_score()
+            pygame.display.update()
             self.playing = False
             self.death_count += 1
             if self.score > self.high_score:
@@ -125,13 +135,22 @@ class Game:
 
     def show_menu(self, first_start=True):
         self.screen.fill(BG_COLOR)
-        self.base.draw(self.screen)
+
+        if not first_start:
+            for cloud in self.clouds:
+                cloud.draw(self.screen)
+            self.small_cactus.draw(self.screen)
+            self.large_cactus.draw(self.screen)
+            if self.score > 350:
+                self.bird.draw(self.screen)
+
 
         if first_start:
             self.dino.draw_start(self.screen)
             text = self.font.render("Press any Key to Start", True, TEXT_COLOR)
             self.screen.blit(text, (SCREEN_WIDTH // 2 - 140, SCREEN_HEIGHT // 2))
         else:
+            self.base.draw(self.screen)
             self.screen.blit(GAME_OVER, (SCREEN_WIDTH // 2 - 190, SCREEN_HEIGHT // 2 - 50))
             self.screen.blit(RESET_BUTTON, (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 + 30))
             self.dino.draw_dead(self.screen)
