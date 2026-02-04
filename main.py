@@ -1,11 +1,28 @@
-import pygame
 import sys
-from src.config import SCREEN_WIDTH, SCREEN_HEIGHT, TITLE, FPS, MOVEMENT_VELOCITY, BG_COLOR, TEXT_COLOR
-from src.assets_loader import GAME_OVER, RESET_BUTTON, FONT_STYLE, DEATH_SOUND, HUNDRED_SOUND
+
+import pygame
+
+from src.assets_loader import (
+    DEATH_SOUND,
+    FONT_STYLE,
+    GAME_OVER,
+    HUNDRED_SOUND,
+    RESET_BUTTON,
+)
+from src.config import (
+    BG_COLOR,
+    FPS,
+    MOVEMENT_VELOCITY,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
+    TEXT_COLOR,
+    TITLE,
+)
 from src.dino import Dinosaur
-from src.obstacles import SmallCactus, LargeCactus, Bird
 from src.environment import Base, Cloud
+from src.obstacles import Bird, LargeCactus, SmallCactus
 from src.utils import check_collision
+
 
 class Game:
     def __init__(self):
@@ -120,8 +137,8 @@ class Game:
         pygame.display.update()
 
     def display_score(self):
-        score_text = self.font.render(f"Score: {int(self.score)}", True, TEXT_COLOR)
-        hs_text = self.font.render(f"HI: {int(self.high_score)}", True, TEXT_COLOR)
+        score_text = self.font.render(f'Score: {int(self.score)}', True, TEXT_COLOR)
+        hs_text = self.font.render(f'HI: {int(self.high_score)}', True, TEXT_COLOR)
         self.screen.blit(score_text, (900, 20))
         self.screen.blit(hs_text, (750, 20))
 
@@ -144,15 +161,18 @@ class Game:
             if self.score > 350:
                 self.bird.draw(self.screen)
 
-
         if first_start:
             self.dino.draw_start(self.screen)
-            text = self.font.render("Press any Key to Start", True, TEXT_COLOR)
+            text = self.font.render('Press any Key to Start', True, TEXT_COLOR)
             self.screen.blit(text, (SCREEN_WIDTH // 2 - 140, SCREEN_HEIGHT // 2))
         else:
             self.base.draw(self.screen)
-            self.screen.blit(GAME_OVER, (SCREEN_WIDTH // 2 - 190, SCREEN_HEIGHT // 2 - 50))
-            self.screen.blit(RESET_BUTTON, (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 + 30))
+            self.screen.blit(
+                GAME_OVER, (SCREEN_WIDTH // 2 - 190, SCREEN_HEIGHT // 2 - 50)
+            )
+            self.screen.blit(
+                RESET_BUTTON, (SCREEN_WIDTH // 2 - 35, SCREEN_HEIGHT // 2 + 30)
+            )
             self.dino.draw_dead(self.screen)
             self.display_score()
 
@@ -169,6 +189,7 @@ class Game:
                     self.playing = True
                     waiting = False
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     game = Game()
     game.run()

@@ -1,6 +1,8 @@
 import random
+
 from .assets_loader import BG, CLOUD
-from .config import SCREEN_WIDTH, SCREEN_HEIGHT
+from .config import SCREEN_HEIGHT, SCREEN_WIDTH
+
 
 class Base:
     def __init__(self):
@@ -22,6 +24,7 @@ class Base:
     def draw(self, screen):
         screen.blit(self.image, (self.x1, self.y))
         screen.blit(self.image, (self.x2, self.y))
+
 
 class Cloud:
     start_pos = SCREEN_WIDTH

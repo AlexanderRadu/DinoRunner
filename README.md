@@ -1,5 +1,7 @@
 # Dino Runner 🦖
 
+[![Lint & Test](https://github.com/AlexanderRadu/DinoRunner/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexanderRadu/DinoRunner/actions/workflows/ci.yml)
+
 Клон популярной игры из браузера Chrome, написанный на Python с использованием библиотеки **pygame**.
 
 ## Описание

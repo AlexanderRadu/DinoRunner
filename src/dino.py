@@ -1,5 +1,7 @@
 import pygame
-from .assets_loader import RUNNING, JUMPING, DUCKING, DINO_START, DEAD, JUMP_SOUND
+
+from .assets_loader import DEAD, DINO_START, DUCKING, JUMP_SOUND, JUMPING, RUNNING
+
 
 class Dinosaur:
     ANIMATION_TIME = 5 * 2
@@ -34,7 +36,9 @@ class Dinosaur:
         if self.step_index >= 20:
             self.step_index = 0
 
-        is_jumping_input = (user_input[pygame.K_UP] or user_input[pygame.K_SPACE] or user_mouse_input[0])
+        is_jumping_input = (
+            user_input[pygame.K_UP] or user_input[pygame.K_SPACE] or user_mouse_input[0]
+        )
         is_ducking_input = user_input[pygame.K_DOWN]
 
         if is_jumping_input and not self.dino_jump and not is_ducking_input:

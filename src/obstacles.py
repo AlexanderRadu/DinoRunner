@@ -1,6 +1,8 @@
 import random
-from .assets_loader import SMALL_CACTUS, LARGE_CACTUS, BIRD
-from .config import SCREEN_WIDTH, SCREEN_HEIGHT
+
+from .assets_loader import BIRD, LARGE_CACTUS, SMALL_CACTUS
+from .config import SCREEN_HEIGHT, SCREEN_WIDTH
+
 
 class Obstacle:
     start_pos = SCREEN_WIDTH
@@ -28,15 +30,18 @@ class Obstacle:
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
 
+
 class SmallCactus(Obstacle):
     def __init__(self, velocity):
         super().__init__(SMALL_CACTUS, velocity)
         self.y = 572 - self.image.get_height()
 
+
 class LargeCactus(Obstacle):
     def __init__(self, velocity):
         super().__init__(LARGE_CACTUS, velocity)
         self.y = 572 - self.image.get_height()
+
 
 class Bird(Obstacle):
     def __init__(self, velocity):
